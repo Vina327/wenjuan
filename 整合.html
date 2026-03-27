@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>问卷分流</title>
+</head>
+<body>
+    <script>
+        // 替换成你的3个问卷链接
+        const urls = [
+            "https://v.wjx.cn/vm/OMMVewN.aspx# ",
+            "https://v.wjx.cn/vm/wdAGJg2.aspx# ",
+            "https://v.wjx.cn/vm/hQLFg7V.aspx# "
+        ];
+        // 轮询分配（1→2→3→1→2→3，绝对平均）
+        let count = localStorage.getItem("redirectCount") || 0;
+        count = Number(count);
+        window.location.href = urls[count % 3];
+        localStorage.setItem("redirectCount", count + 1);
+    </script>
+</body>
+</html>
