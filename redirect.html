@@ -6,17 +6,15 @@
 </head>
 <body>
     <script>
-        // 替换成你的3个问卷链接
+        // 替换成你的3个问卷完整链接（必须带https://）
         const urls = [
-            "https://v.wjx.cn/vm/OMMVewN.aspx# ",
-            "https://v.wjx.cn/vm/wdAGJg2.aspx# ",
-            "https://v.wjx.cn/vm/hQLFg7V.aspx# "
+            "https://v.wjx.cn/vm/OMMVewN.aspx#",
+            "https://v.wjx.cn/vm/wdAGJg2.aspx#",
+            "https://v.wjx.cn/vm/hQLFg7V.aspx#"
         ];
-        // 轮询分配（1→2→3→1→2→3，绝对平均）
-        let count = localStorage.getItem("redirectCount") || 0;
-        count = Number(count);
-        window.location.href = urls[count % 3];
-        localStorage.setItem("redirectCount", count + 1);
+        // 全局随机分配（每个用户独立随机，绝对平均，不受本地缓存影响）
+        const randomIndex = Math.floor(Math.random() * urls.length);
+        window.location.href = urls[randomIndex];
     </script>
 </body>
 </html>
